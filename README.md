@@ -28,3 +28,49 @@ Total generation time: 1.484 seconds across 1 attempt
 
 Compilation command: g++ -o main main.cpp
 ```
+The code produced is
+```cpp
+// Generated from prompt file: prompt_cauchy.txt
+// Model used: qwen-2.5-coder-32b
+// Time generated: 2025-03-08 16:52:58
+// Generation time: 1.484 seconds
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+#include <random>
+
+double trimmedMean(std::vector<double>& data, double trim) {
+    std::sort(data.begin(), data.end());
+    int trimSize = std::floor(trim * data.size());
+    double sum = 0.0;
+    for (int i = trimSize; i < data.size() - trimSize; ++i) {
+        sum += data[i];
+    }
+    return sum / (data.size() - 2 * trimSize);
+}
+
+int main() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::cauchy_distribution<> dis(0.0, 1.0);
+
+    int numSamples = 100;
+    int sampleSize = 1000;
+    double trims[] = {0.0, 0.1, 0.2, 0.3, 0.4, 0.45};
+
+    for (double trim : trims) {
+        double totalTrimmedMean = 0.0;
+        for (int i = 0; i < numSamples; ++i) {
+            std::vector<double> sample(sampleSize);
+            for (int j = 0; j < sampleSize; ++j) {
+                sample[j] = dis(gen);
+            }
+            totalTrimmedMean += trimmedMean(sample, trim);
+        }
+        std::cout << "Trim: " << trim << " Optimized Trimmed Mean: " << totalTrimmedMean / numSamples << std::endl;
+    }
+
+    return 0;
+}
+```
