@@ -1,0 +1,13 @@
+model: qwen-2.5-coder-32b
+max_attempts: 5
+max_time: 1000
+prompt_file: prompt_cauchy.txt
+source_file: main.cpp
+run_executable: yes
+print_code: no
+print_compiler_error_messages: no
+compiler: g++
+
+
+
+
