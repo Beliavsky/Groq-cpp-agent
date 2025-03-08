@@ -1,5 +1,5 @@
 # Groq-cpp-agent
-Python script that uses Groq to create C++ programs, iterating with compiler error messages until they compile
+Python script that uses LLMs on Groq to create C++ programs, iterating with compiler error messages until they compile
 
 Sample output:
 ```
