@@ -75,7 +75,7 @@ def generate_code(prompt):
     response = client.chat.completions.create(
         model=model,
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=1000
+        max_tokens=4096
     )
     end_time = time.time()
     generation_time = end_time - start_time
